@@ -60,38 +60,53 @@ const Dashboard = () => {
             <CardDescription>
               Higher percentages indicate better resource utilization across nodes
             </CardDescription>
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger 
-                value="cpu" 
-                onClick={() => setActiveResourceTab("cpu")}
-                className={activeResourceTab === "cpu" ? "bg-blue-100" : ""}
-              >
-                CPU
-              </TabsTrigger>
-              <TabsTrigger 
-                value="memory" 
-                onClick={() => setActiveResourceTab("memory")}
-                className={activeResourceTab === "memory" ? "bg-blue-100" : ""}
-              >
-                Memory
-              </TabsTrigger>
-              <TabsTrigger 
-                value="storage" 
-                onClick={() => setActiveResourceTab("storage")}
-                className={activeResourceTab === "storage" ? "bg-blue-100" : ""}
-              >
-                Storage
-              </TabsTrigger>
-            </TabsList>
+            <Tabs defaultValue="cpu" value={activeResourceTab} onValueChange={setActiveResourceTab}>
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger 
+                  value="cpu" 
+                  className={activeResourceTab === "cpu" ? "bg-blue-100" : ""}
+                >
+                  CPU
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="memory" 
+                  className={activeResourceTab === "memory" ? "bg-blue-100" : ""}
+                >
+                  Memory
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="storage" 
+                  className={activeResourceTab === "storage" ? "bg-blue-100" : ""}
+                >
+                  Storage
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="cpu">
+                <div className="h-[300px]">
+                  <ResourceUtilizationChart 
+                    resourceType="cpu"
+                    selectedAlgorithms={selectedAlgorithms}
+                  />
+                </div>
+              </TabsContent>
+              <TabsContent value="memory">
+                <div className="h-[300px]">
+                  <ResourceUtilizationChart 
+                    resourceType="memory"
+                    selectedAlgorithms={selectedAlgorithms}
+                  />
+                </div>
+              </TabsContent>
+              <TabsContent value="storage">
+                <div className="h-[300px]">
+                  <ResourceUtilizationChart 
+                    resourceType="storage"
+                    selectedAlgorithms={selectedAlgorithms}
+                  />
+                </div>
+              </TabsContent>
+            </Tabs>
           </CardHeader>
-          <CardContent>
-            <div className="h-[300px]">
-              <ResourceUtilizationChart 
-                resourceType={activeResourceTab as "cpu" | "memory" | "storage"} 
-                selectedAlgorithms={selectedAlgorithms}
-              />
-            </div>
-          </CardContent>
         </Card>
 
         <Card>

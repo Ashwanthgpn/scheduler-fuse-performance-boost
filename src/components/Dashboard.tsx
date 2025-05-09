@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import { Algorithm } from "@/types";
+import { Link } from "react-router-dom";
 import { algorithmDescriptions } from "@/data/performance-data";
 import AlgorithmCard from "@/components/AlgorithmCard";
 import ResourceUtilizationChart from "@/components/charts/ResourceUtilizationChart";
@@ -9,6 +11,8 @@ import EnergyConsumptionChart from "@/components/charts/EnergyConsumptionChart";
 import SimulationPanel from "@/components/SimulationPanel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 
 const Dashboard = () => {
   const [selectedAlgorithms, setSelectedAlgorithms] = useState<Algorithm[]>(["binpacking", "drf", "fuse"]);
@@ -26,7 +30,15 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto p-4 min-h-[calc(100vh-11.5rem)]">
-      <h1 className="text-2xl font-bold mb-6">Kubernetes Scheduler Algorithm Comparison</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Kubernetes Scheduler Algorithm Comparison</h1>
+        <Button asChild>
+          <Link to="/simulation">
+            Advanced Simulation
+            <ExternalLink className="ml-1 h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <AlgorithmCard

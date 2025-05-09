@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Algorithm } from "@/types";
 import { scenarios, simulationResults, ScenarioType } from "@/data/simulation-scenarios";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Cpu, Memory, Clock, Container } from "lucide-react";
+import { Cpu, HardDrive, Clock, Container } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 
@@ -38,7 +37,7 @@ const SimulationPanel = ({ selectedAlgorithms }: SimulationPanelProps) => {
       toast({
         title: "Simulation Complete",
         description: "All scenarios show FUSE outperforming traditional algorithms.",
-        variant: "success",
+        variant: "default",
       });
     }, 2000); // 2 second simulation for demo
     
@@ -94,7 +93,7 @@ const SimulationPanel = ({ selectedAlgorithms }: SimulationPanelProps) => {
     schedulingSuccessRate: <Container className="h-5 w-5" />,
     averageSchedulingTime: <Clock className="h-5 w-5" />,
     resourceUtilization: <Cpu className="h-5 w-5" />,
-    energyEfficiency: <Memory className="h-5 w-5" />,
+    energyEfficiency: <HardDrive className="h-5 w-5" />,
     failedContainers: <Container className="h-5 w-5" />
   };
 

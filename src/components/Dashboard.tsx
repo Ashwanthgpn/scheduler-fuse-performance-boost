@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Algorithm } from "@/types";
 import { algorithmDescriptions } from "@/data/performance-data";
@@ -7,6 +6,7 @@ import ResourceUtilizationChart from "@/components/charts/ResourceUtilizationCha
 import SchedulingTimeChart from "@/components/charts/SchedulingTimeChart";
 import MakespanChart from "@/components/charts/MakespanChart";
 import EnergyConsumptionChart from "@/components/charts/EnergyConsumptionChart";
+import SimulationPanel from "@/components/SimulationPanel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -52,6 +52,9 @@ const Dashboard = () => {
           isActive={selectedAlgorithms.includes("fuse")}
         />
       </div>
+
+      {/* Add Simulation Panel here, before the metrics charts */}
+      <SimulationPanel selectedAlgorithms={selectedAlgorithms} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <Card>

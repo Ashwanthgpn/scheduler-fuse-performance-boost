@@ -3,7 +3,15 @@ import { Button } from "@/components/ui/button";
 import { GithubIcon, InfoIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
-const Header = () => {
+interface HeaderProps {
+  links?: { href: string; label: string }[];
+}
+
+const Header = ({ links = [
+  { href: "/", label: "Dashboard" },
+  { href: "/simulation", label: "Simulation" },
+  { href: "/publications", label: "Publications" },
+] }: HeaderProps) => {
   return (
     <header className="bg-k8s-blue text-white p-4 flex items-center justify-between shadow-md">
       <div className="flex items-center space-x-4">
@@ -25,6 +33,21 @@ const Header = () => {
           </svg>
           K8s Scheduler Comparison
         </div>
+        
+        <nav className="hidden md:flex ml-8">
+          <ul className="flex space-x-6">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a 
+                  href={link.href}
+                  className="text-white hover:text-blue-100 transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
       
       <div className="flex items-center space-x-4">
